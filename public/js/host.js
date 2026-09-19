@@ -286,7 +286,10 @@
     if (state.conn) state.conn.close();
     const url = `/api/host/rooms/${state.code}/stream?hostSecret=${state.secret}`;
     state.conn = WW.connectSSE(url, {
-      onMessage: (view) => renderDashboard(view),
+      onMessage: (view) => {
+        renderDashboard(view);
+        if (view.phase === 'ended') state.conn.close();
+      },
       onStatus: (status) => {
         state.connStatus = status;
         const dot = document.getElementById('conn-dot');

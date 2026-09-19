@@ -95,7 +95,10 @@
     if (state.conn) state.conn.close();
     const url = `/api/player/rooms/${state.code}/stream?playerId=${state.playerId}&token=${state.token}`;
     state.conn = WW.connectSSE(url, {
-      onMessage: (view) => render(view),
+      onMessage: (view) => {
+        render(view);
+        if (view.phase === 'ended') state.conn.close();
+      },
       onStatus: (status) => {
         state.connStatus = status;
         const dot = document.getElementById('conn-dot');

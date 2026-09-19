@@ -63,6 +63,16 @@ async function broadcast(code) {
   }
 }
 
+function closeRoom(code) {
+  const hub = hubs.get(code.toUpperCase());
+  if (!hub) return;
+  for (const res of hub.host) res.end();
+  for (const resSet of hub.players.values()) {
+    for (const res of resSet) res.end();
+  }
+  hubs.delete(code.toUpperCase());
+}
+
 // Keep-alive comment ping, every 5 minutes, for every open connection.
 // Two jobs at once: (1) stops intermediary proxies/browsers from treating an
 // idle SSE stream as dead, and (2) on Render's free tier, traffic on an
@@ -80,4 +90,4 @@ const pingTimer = setInterval(() => {
 }, 5 * 60 * 1000);
 pingTimer.unref(); // don't let this timer alone keep the process alive
 
-module.exports = { sseHeaders, addHostClient, addPlayerClient, broadcast, send };
+module.exports = { sseHeaders, addHostClient, addPlayerClient, broadcast, closeRoom, send };

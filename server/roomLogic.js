@@ -611,6 +611,10 @@ async function endGame(code, { hostSecret }) {
   return room;
 }
 
+async function deleteRoom(code) {
+  await store.del(store.roomKey(code));
+}
+
 // ---------------------------------------------------------------------------
 // Views
 // ---------------------------------------------------------------------------
@@ -813,6 +817,7 @@ module.exports = {
   breakTie,
   overridePlayerStatus,
   endGame,
+  deleteRoom,
   hostView,
   playerView,
   lobbyView,

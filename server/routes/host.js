@@ -126,6 +126,8 @@ router.post('/rooms/:code/override', wrap(async (req, res) => {
 router.post('/rooms/:code/end', wrap(async (req, res) => {
   const room = await roomLogic.endGame(req.params.code, req.body);
   await sse.broadcast(req.params.code);
+  await roomLogic.deleteRoom(req.params.code);
+  sse.closeRoom(req.params.code);
   res.json(roomLogic.hostView(room));
 }));
 
