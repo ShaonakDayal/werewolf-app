@@ -773,7 +773,12 @@ function playerView(room, playerId) {
       : null,
     nightPrompt,
     votePrompt,
-    phaseEndsAt: room.phase === 'night' ? room.night?.endsAt : room.phase === 'day-vote' ? room.vote?.endsAt : null,
+    phaseEndsAt:
+      room.phase === 'night' && room.night?.active
+        ? room.night.endsAt
+        : room.phase === 'day-vote' && room.vote?.active
+          ? room.vote.endsAt
+          : null,
     lastNightResult: player.lastNightResult,
     playersAlive: room.players.filter((p) => p.alive).length,
     playersTotal: room.players.length,

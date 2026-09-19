@@ -212,7 +212,7 @@
           ${intelCard(view)}
           <div class="card raised center stack">
             <div class="signature" style="font-size:1.3rem;">Night ${view.round}</div>
-            <span class="countdown" id="countdown"></span>
+            ${view.phaseEndsAt ? '<span class="countdown" id="countdown"></span>' : ''}
             <p class="muted">The village sleeps. ${escapeHtml(nightRoleReminderText(view))}</p>
             <p class="muted" style="font-size:0.85rem;">Sit tight — nothing for you to do this round.</p>
           </div>
