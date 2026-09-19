@@ -1,0 +1,42 @@
+[
+  {
+    "id": "villager",
+    "name": "Villager",
+    "emoji": "\ud83c\udf3e",
+    "team": "Village",
+    "builtIn": true,
+    "shortText": "No special power. Watch, listen, and vote wisely.",
+    "powerText": "You're an ordinary villager. You have no night action \u2014 your job is to pay attention by day and help vote out the wolves before they pick everyone off.",
+    "action": { "type": "none", "effect": "none", "order": 0 }
+  },
+  {
+    "id": "werewolf",
+    "name": "Werewolf",
+    "emoji": "\ud83d\udc3a",
+    "team": "Werewolf",
+    "builtIn": true,
+    "shortText": "Each night, hunt with the pack and choose someone to eliminate.",
+    "powerText": "Each night, you and the other werewolves silently agree on one player to eliminate. Your pack wins when wolves equal or outnumber the villagers.",
+    "action": { "type": "team", "effect": "kill", "order": 10 }
+  },
+  {
+    "id": "seer",
+    "name": "Seer",
+    "emoji": "\ud83d\udd2e",
+    "team": "Village",
+    "builtIn": true,
+    "shortText": "Each night, secretly inspect one player's true allegiance.",
+    "powerText": "Each night, choose one player. You'll privately learn whether they're a Werewolf or not. Keep it to yourself, or use it to guide the village \u2014 carefully.",
+    "action": { "type": "solo", "effect": "inspect", "order": 20 }
+  },
+  {
+    "id": "doctor",
+    "name": "Doctor",
+    "emoji": "\ud83e\ude79",
+    "team": "Village",
+    "builtIn": true,
+    "shortText": "Each night, choose one player to protect from the wolves.",
+    "powerText": "Each night, choose one player (yourself included) to protect. If the werewolves target that player tonight, they survive.",
+    "action": { "type": "solo", "effect": "protect", "order": 5 }
+  }
+]
