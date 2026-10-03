@@ -736,6 +736,12 @@ function playerView(room, playerId) {
         teammates: (poll?.eligibleVoterIds || [])
           .filter((id) => id !== player.id)
           .map((id) => room.players.find((p) => p.id === id)?.name),
+        teammateVotes: poll
+          ? Object.entries(poll.ballots).map(([voterId, targetId]) => ({
+              voterName: room.players.find((p) => p.id === voterId)?.name,
+              targetName: room.players.find((p) => p.id === targetId)?.name,
+            }))
+          : [],
         liveTally: poll
           ? candidateIds.map((id) => ({
               id,

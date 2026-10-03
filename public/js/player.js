@@ -251,6 +251,11 @@
           </div>
           <p class="muted" style="margin:0 0 4px;">${actionLabel}${prompt.kind === 'team' ? ' — decide together with your pack' : ''}</p>
           ${prompt.kind === 'team' && prompt.teammates?.length ? `<p class="muted" style="font-size:0.8rem; margin:0 0 6px;">With: ${prompt.teammates.map(escapeHtml).join(', ')}</p>` : ''}
+          ${prompt.kind === 'team' && prompt.teammateVotes?.length ? `
+            <div class="team-votes stack" style="gap:4px; margin:0 0 6px;">
+              <div class="eyebrow">Pack votes</div>
+              ${prompt.teammateVotes.map((vote) => `<div class="muted" style="font-size:0.8rem;">${escapeHtml(vote.voterName)} → ${escapeHtml(vote.targetName)}</div>`).join('')}
+            </div>` : ''}
           <div class="target-list">${rows}</div>
           <p class="muted center" style="font-size:0.8rem;">Tap a name to choose. You can change your mind until the timer ends.</p>
         </div>
